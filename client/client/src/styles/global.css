@@ -366,16 +366,16 @@ p {
 /* line 116, ../sass/global.sass */
 .course--label {
   font-family: "Cousine";
-  font-size: 14px;
+  font-size: 30px;
   font-weight: 100;
-  color: rgba(255, 255, 255, 0.5);
+  color: #000;
   margin-bottom: 10px;
   font-weight: normal;
 }
 /* line 123, ../sass/global.sass */
 .course--title {
-  font-size: 18px;
-  color: #fff;
+  font-size: 24px;
+  color: #000;
 }
 /* line 126, ../sass/global.sass */
 .course--link {

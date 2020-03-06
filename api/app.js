@@ -26,6 +26,9 @@ const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'tr
 // create the Express app
 const app = express();
 
+//Enable all CORS Requests
+app.use(cors());
+
 //Setup request body JSON parsing
 app.use(express.json());
 

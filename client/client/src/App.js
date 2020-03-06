@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import './App.css'
+import React from 'react';
 
 import {
   BrowserRouter as Router,
@@ -13,7 +12,7 @@ import NotFound from './components/NotFound';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import SignOut from './components/SignOut';
-import Course from './components/Course';
+import Courses from './components/Courses';
 import CourseDetail from './components/CourseDetail';
 import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
@@ -25,33 +24,30 @@ const HeaderWithContext = withContext(Header);
 const SignUpWithContext = withContext(SignUp);
 const SignInWithContext = withContext(SignIn);
 const SignOutWithContext = withContext(SignOut);
-const CourseWithContext = withContext(Course);
+const CoursesWithContext = withContext(Courses);
+const CourseDetailWithContext = withContext(CourseDetail);
 const CreateCourseWithContext = withContext(CreateCourse);
 const UpdateCourseWithContext = withContext(UpdateCourse);
 
-
-class App extends Component{
-  render(){
-    return(
-        <Router>
-          <div>
-            <HeaderWithContext />
-
-            <Switch>
-              <Route exact path="/" component={CourseWithContext} />
-              {/* <PrivateRoute path="/authenticated" component={AuthWithContext} /> */}
-              <Route path="/signin" component={SignInWithContext} />
-              <Route path="/signup" component={SignUpWithContext} />
-              <Route path ="/signout" component={SignOutWithContext} />
+export default () => (
+  <Router>
+    <HeaderWithContext />
+      <div>
+        <Switch>
+          <Route exact path="/" component={CoursesWithContext} />
+            
+          <Route path="/signin" component={SignInWithContext} />
+          <Route path="/signup" component={SignUpWithContext} />
+          <Route path ="/signout" component={SignOutWithContext} />
           
-              <Route path="/courses/create" component ={CreateCourseWithContext}/>
-              <Route path="/courses/:id/update" component={UpdateCourseWithContext}/>
-              <Route path="/courses/:id/CourseDetail" component={CourseDetail} />
-              <Route component={NotFound} />
-            </Switch>
-          </div>
-        </Router>
-        );
-    }
-}
-export default App;
+          <PrivateRoute path="/courses/create" component ={CreateCourseWithContext}/>
+          <PrivateRoute path="/courses/:id/update" component={UpdateCourseWithContext}/>
+          <Route path="/courses/:id" component={CourseDetailWithContext} />
+          <Route path="/notfound" component={NotFound} />
+          <Route component={NotFound} />
+          
+          </Switch>
+        </div>
+      </Router>
+);
+   
