@@ -20,9 +20,10 @@ class CreateCourse extends Component{
             description,
             estimatedTime,
             materialsNeeded,
-            errors
+            errors,
         } = this.state;
-
+        const {authenticatedUser} = this.props.context;
+        const name = `${authenticatedUser.firstName} ${authenticatedUser.lastName}`;
       
      
         return (
@@ -36,36 +37,33 @@ class CreateCourse extends Component{
                   submitButtonText="Create Course"
                   elements={() => (
                     <React.Fragment>
-                      <input 
-                        id="title" 
-                        name="title" 
-                        type="text"
-                        value={title} 
-                        onChange={this.change} 
-                        placeholder="Course title" />
-                      <input 
-                        id="description" 
-                        name="description" 
-                        type="textarea"
-                        value={description} 
-                        onChange={this.change} 
-                        placeholder="Course description" />
-                      <input 
-                        id="estimatedTime" 
-                        name="estimatedTime" 
-                        type="text"
-                        className="course--time-input"
-                        value={estimatedTime} 
-                        onChange={this.change} 
-                        placeholder="Estimated Time" />
-                      <input 
-                        id="materialsNeeded" 
-                        name="materialsNeeded"
-                        type="text"
-                        className="materials"
-                        value={materialsNeeded} 
-                        onChange={this.change} 
-                        placeholder="Materials" />
+                      <div className="grid-66">
+                        <div className="course--header">
+                          <h4 className="course--label">Course</h4>
+                          <div>
+                            <input id="title" name="title" type="text" className="input-title course--title--input" placeholder="Course title..." value={title} onChange={this.change} />
+                          </div>
+                        </div>
+                      </div>
+                      <p> By {name} </p>
+                      <div className="course--description">
+                        <div><textarea id="description" name="description" className="" placeholder="Course Description..." value={description} onChange={this.change} /> </div>
+                      </div>
+                      <div className="grid-25 grid-right">
+                        <div className="course-stats">
+                          <ul className="course-stats--list">
+                            <li className="course--stats-list--item">
+                              <h4>Estimated Time</h4>
+                              <div><input id="estimatedTime" name="estimatedTime" type="text" className="course--time--input" placeholder="Hours" value={estimatedTime} onChange={this.change}  /></div>
+                            </li>
+                            <li className="course--stats-list-item">
+                              <h4>Materials Needed</h4>
+                              <div><textarea id="materialsNeeded" name="materialsNeeded" className="" placeholder="List of Materials" value={materialsNeeded} onChange={this.change} /></div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      
                     </React.Fragment>
                   )} />
               </div>
@@ -100,9 +98,11 @@ class CreateCourse extends Component{
               materialsNeeded,
               userId: context.authenticatedUser.id
             }
+          
             const emailAddress = context.authenticatedUser.emailAddress;
             const password = context.authenticatedUser.password;
 
+            //create the new Course
             context.data.createCourse(newCourse, emailAddress, password)
               .then(errors => {
                 if(errors.length){

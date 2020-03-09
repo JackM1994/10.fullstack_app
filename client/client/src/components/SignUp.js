@@ -8,6 +8,7 @@ class SignUp extends Component {
     lastName: '',
     emailAddress: '',
     password: '',
+    confirmPassword: '',
     errors: [],
   }
 
@@ -17,6 +18,7 @@ class SignUp extends Component {
       lastName,
       emailAddress,
       password,
+      confirmPassword,
       errors,
     } = this.state;
 
@@ -59,6 +61,13 @@ class SignUp extends Component {
                   value={password} 
                   onChange={this.change} 
                   placeholder="Password" />
+                <input 
+                  id="confirmPassword" 
+                  name="confirmPassword"
+                  type="password"
+                  value={confirmPassword} 
+                  onChange={this.change} 
+                  placeholder="Confirm Password" />
               </React.Fragment>
             )} />
           <p>
@@ -88,6 +97,7 @@ class SignUp extends Component {
       lastName,
       emailAddress,
       password,
+      confirmPassword,
     } = this.state;
 
     //New user payload
@@ -96,6 +106,7 @@ class SignUp extends Component {
       lastName,
       emailAddress,
       password,
+      confirmPassword
     };
     context.data.createUser(user)
       .then(errors => {

@@ -8,13 +8,14 @@ class CourseDetail extends Component{
     constructor(props){
         super(props);
         this.state = {
-            
             courseDetail: [],
+            author:[],
            
-        }
+        };
     }
 
     componentDidMount(){
+        //retrieve course data
         const { context } = this.props;
         const { id } = this.props.match.params;
         context.data.getCourse(id)
@@ -22,7 +23,9 @@ class CourseDetail extends Component{
             if(course){
                 this.setState({
                     courseDetail: course,
-                  
+                    author: course.User
+                    
+                   
                 });
             } else{
                 this.props.history.push('/notfound');
@@ -62,9 +65,7 @@ class CourseDetail extends Component{
     render(){
         const { context } = this.props;
         const authUser = context.authenticatedUser;
-       
         const { id, title, description, estimatedTime, materialsNeeded, userId, firstName, lastName} = this.state.courseDetail;
-      
         
      
         return(
@@ -129,7 +130,7 @@ class CourseDetail extends Component{
                         <div className="course--header">
                         <h4 className="course--label">Course</h4>
                         <h3 className="course--title">{title}</h3>
-                        <p>By {firstName} {lastName}</p>
+                        <p>{`By ${authUser.firstName} ${authUser.lastName}`}</p>
                         </div>
                         <div className="course--description">
                         <div>
@@ -142,7 +143,7 @@ class CourseDetail extends Component{
                         <ul className="course--stats--list">
                             <li className="course--stats--list--item">
                             <h4>Estimated Time</h4>
-                            <h3>{estimatedTime}</h3>
+                            <h3>{estimatedTime ? estimatedTime: <p>Unknown</p>}</h3>
                             </li>
                             <li className="course--stats--list--item">
                             <h4>Materials Needed</h4>
