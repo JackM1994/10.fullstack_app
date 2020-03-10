@@ -30,6 +30,15 @@ class CreateCourse extends Component{
             <React.Fragment>
             <div className="bounds course--detail">
                 <h1>Create Course</h1>
+                    <div>
+                      <h2 className="validation--errors--label">Validation Errors</h2>
+                      <div className="validation-errors">
+                        <ul>
+                          <li>Please provide a value for Title</li>
+                          <li>Please provide a value for Description</li>
+                        </ul>
+                    </div>
+                    </div>
                 <Form 
                   cancel={this.cancel}
                   errors={errors}
