@@ -128,8 +128,7 @@ class UpdateCourse extends Component {
               description,
               estimatedTime,
               materialsNeeded,
-              firstName,
-              lastName
+             
             } = this.state;
         
             //New course payload

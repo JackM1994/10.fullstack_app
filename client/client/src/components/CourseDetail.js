@@ -67,8 +67,8 @@ class CourseDetail extends Component {
 render() {
     const { context } = this.props;
     const authUser = context.authenticatedUser;
-    const { id, title, description, estimatedTime, materialsNeeded, userId} = this.state.courseDetail;
-    const user = context.User;
+    const { id, title, description, estimatedTime, materialsNeeded, userId, firstName, lastName} = this.state.courseDetail;
+    
   
 
     return (
@@ -133,7 +133,7 @@ render() {
                     <div className="course--header">
                     <h4 className="course--label">Course</h4>
                     <h3 className="course--title">{title}</h3>
-                    <p>{`By ${authUser.firstName} ${authUser.lastName} `}</p>
+                    <p>By {firstName} {lastName} </p>
                     </div>
                     <div className="course--description">
                     <div>
