@@ -22,7 +22,7 @@ export class Provider extends Component {
       actions: {
         signIn: this.signIn,
         signOut: this.signOut,
-        createCourse: this.createCourse
+       
       },
     };
     return (

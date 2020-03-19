@@ -23,6 +23,7 @@ class CourseDetail extends Component {
    
       .then(course => {
        if(course){
+           console.log(course);
         this.setState({
             courseDetail: course,
            
@@ -67,8 +68,8 @@ class CourseDetail extends Component {
 render() {
     const { context } = this.props;
     const authUser = context.authenticatedUser;
-    const { id, title, description, estimatedTime, materialsNeeded, userId, firstName, lastName} = this.state.courseDetail;
-    
+    const { id, title, description, estimatedTime, materialsNeeded, userId, userName} = this.state.courseDetail;
+    const author = userName ? `${userName.firstName} ${userName.lastName}`: null;
   
 
     return (
@@ -133,7 +134,7 @@ render() {
                     <div className="course--header">
                     <h4 className="course--label">Course</h4>
                     <h3 className="course--title">{title}</h3>
-                    <p>By {firstName} {lastName} </p>
+                    <p>By{author} </p>
                     </div>
                     <div className="course--description">
                     <div>

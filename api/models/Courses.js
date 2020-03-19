@@ -48,8 +48,10 @@ module.exports = (sequelize) => {
     //association bewteen courses model and users model
     Courses.associate = (models) => {
         Courses.belongsTo(models.Users, {
+            as:'userName',
            foreignKey: {
                fieldName: 'userId',
+            
                allowNull: false,
                validate: {
                    notNull: {

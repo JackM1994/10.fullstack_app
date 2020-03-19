@@ -110,6 +110,7 @@ class SignUp extends Component {
     };
     context.data.createUser(user)
       .then(errors => {
+       
         if(errors.length){
           this.setState( { errors } );
         }else{

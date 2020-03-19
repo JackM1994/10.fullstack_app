@@ -74,8 +74,8 @@ async createCourse(course, emailAddress, password){
       return [];
   } else if (response.status === 400) {
       return response.json().then(data => {
-          console.log('Error from Data.js: ', data);
-          return data;
+         return data.errors;
+          
       });
   } else {
       throw new Error();

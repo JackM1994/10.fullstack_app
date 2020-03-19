@@ -19,7 +19,8 @@ class CreateCourse extends Component {
       materialsNeeded,
       errors,
     } = this.state;
-
+    const {context} = this.props;
+    const author = `${context.authenticatedUser.firstName} ${context.authenticatedUser.lastName}`;
     return (
     
         <div className="bounds course--detail">
@@ -41,7 +42,7 @@ class CreateCourse extends Component {
                       value={title}
                       onChange={this.change}
                       placeholder="Course title..." />
-                      <p>By {} </p>
+                      <p>By {author} </p>
                   </div>
                   <div className="course--description">
                     <textarea 
@@ -101,7 +102,7 @@ class CreateCourse extends Component {
     }
     submit = () => {
       const { context } = this.props;
-      const { from } = this.props.location.state || {from: {pathname: '/'}};  
+     
       const {title, description, estimatedTime, materialsNeeded} = this.state;
       //new course essentials 
       const createCourse={
@@ -117,13 +118,13 @@ class CreateCourse extends Component {
       //create new course, use the catch statement to redirect to error page if something goes wrong
       context.data.createCourse(createCourse, emailAddress, password)
           .then(errors =>{
-            if(errors.length){
-              this.setState(()=>{
-                console.log(errors);
-                return { errors: ['ERROR Occurred!!']};
-              });
+            
+            if(errors.length === 1 || errors.length === 2){
+             
+              this.setState( ()=>{
+                return {errors}});
             }else{
-                this.props.history.push(from);
+                this.props.history.push('/');
                 console.log(`SUCCESS! ${emailAddress} has just created the course ${createCourse}!`);
               }
           })
