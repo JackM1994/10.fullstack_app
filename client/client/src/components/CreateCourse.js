@@ -118,11 +118,11 @@ class CreateCourse extends Component {
       //create new course, use the catch statement to redirect to error page if something goes wrong
       context.data.createCourse(createCourse, emailAddress, password)
           .then(errors =>{
-            
+            console.log(errors);
             if(errors.length === 1 || errors.length === 2){
-             
               this.setState( ()=>{
-                return {errors}});
+                return {errors}
+            });
             }else{
                 this.props.history.push('/');
                 console.log(`SUCCESS! ${emailAddress} has just created the course ${createCourse}!`);

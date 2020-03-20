@@ -128,6 +128,7 @@ class UpdateCourse extends Component {
               description,
               estimatedTime,
               materialsNeeded,
+              
              
             } = this.state;
         
@@ -144,10 +145,16 @@ class UpdateCourse extends Component {
             const password = context.authenticatedUser.password;
 
             context.data.updateCourse(updateCourse, emailAddress, password)
-              .then(errors => {
+              .then(errors =>{
+            
                 if(errors.length){
-                  this.setState( { errors } );
-                }else{
+                  this.setState( () =>{
+                    return{
+                      errors
+                    };
+                  }); 
+                }
+                else{
                     console.log(`Course : ${updateCourse.id} has being successfully updated`);
                     this.props.history.push(`/courses/${updateCourse.id}`);
                 
