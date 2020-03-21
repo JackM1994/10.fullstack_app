@@ -146,12 +146,10 @@ class UpdateCourse extends Component {
 
             context.data.updateCourse(updateCourse, emailAddress, password)
               .then(errors =>{
-            
-                if(errors.length){
+                console.log(errors.errors);
+                if(errors.errors){
                   this.setState( () =>{
-                    return{
-                      errors
-                    };
+                    return {errors:[errors.errors]}
                   }); 
                 }
                 else{
